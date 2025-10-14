@@ -1,6 +1,8 @@
 import css from "./App.module.css";
 import CafeInfo from "../CafeInfo/CafeInfo";
 import VoteOptions from "../VoteOptions/VoteOptions";
+import VoteStats from "../VoteStats/VoteStats";
+import Notification from "../Notification/Notification";
 import { useState } from "react";
 import type { Votes, VoteType } from "../../types/votes";
 
@@ -37,8 +39,16 @@ function App() {
         onReset={resetVotes}
         canReset={totalVotes > 0}
       />
+      {totalVotes > 0 ? (
+        <VoteStats
+          votes={votes}
+          totalVotes={totalVotes}
+          positiveRate={positiveRate}
+        />
+      ) : (
+        <Notification />
+      )}
     </div>
   );
 }
-
 export default App;
